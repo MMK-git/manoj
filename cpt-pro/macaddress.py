@@ -93,6 +93,6 @@ def get_macaddress(a,b,c):
 # Logout of the current session
     return lst_mac
     REDFISH_OBJ.logout()
-#get_macaddress("172.20.57.187","admin","admin123")
+#get_macaddress("ip","user","passowrd")
 #print(d)
 
