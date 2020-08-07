@@ -144,7 +144,7 @@ class exceldata():
          install = ET.SubElement(start5, 'INSTALL')
          install.text = "no"
          sys_pwd = ET.SubElement(start5, 'ISO_PATH')
-         sys_pwd.text ="http://172.20.57.150/deployment/SPP/SPP2020030.2020_0319.22.iso"
+         sys_pwd.text ="path"
          iso_path = ET.SubElement(start5, 'FLASH_FIRMWARE')
          iso_path.text = "Yes"
          o = ET.tostring(root, encoding='utf8').decode('utf8')
