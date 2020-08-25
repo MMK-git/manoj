@@ -7,7 +7,7 @@ import pprint
 # HOST = "blobstore://."
 # LOGIN_ACCOUNT = "None"
 # LOGIN_PASSWORD = "None"
-
+#mac_address finding
 # When running remotely connect using the iLO address, iLO account name,
 # and password to send https requests
 def get_macaddress(a,b,c):
