@@ -4,6 +4,7 @@ import shlex
 import subprocess
 import xml.etree.ElementTree as ET
 import sys
+import os
 from macaddress import get_macaddress
 class exceldata():
 
