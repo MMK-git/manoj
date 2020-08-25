@@ -322,6 +322,7 @@ files_list=list(res)
 print(files_list)
 q=open("console_output.txt","a")
 e=open("errorout.txt","w")
+#trigger all deployments i.e. XML parallel
 from subprocess import Popen, PIPE
 import subprocess
 import os
