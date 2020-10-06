@@ -7,7 +7,7 @@ import pprint
 # HOST = "blobstore://."
 # LOGIN_ACCOUNT = "None"
 # LOGIN_PASSWORD = "None"
-#mac_address finding
+
 # When running remotely connect using the iLO address, iLO account name,
 # and password to send https requests
 def get_macaddress(a,b,c):
@@ -90,9 +90,57 @@ def get_macaddress(a,b,c):
                 #print(c2_g9["PhysicalPorts"][j]["MacAddress"])
                 c1=c2_g9["PhysicalPorts"][j]["MacAddress"]
                 lst_mac.append(c1)
+    else:
+        contentg10 = REDFISH_OBJ.get("/redfish/v1/Systems/1/BaseNetworkAdapters/1")
+        c2=contentg10.dict
+        x_g10=data_g10['Members@odata.count']
+#print(x_g10)
+        x_g10=x_g10+1
+
+        for i in range(1,x_g10):
+
+            content1_g10 = REDFISH_OBJ.get("/redfish/v1/Systems/1/BaseNetworkAdapters/%d"%i)
+            c2_g10=content1_g10.dict
+            for j in range(0,len(c2_g10['PhysicalPorts'])):
+
+
+                #print(c2_g10["PhysicalPorts"][j]["MacAddress"])
+                c3=c2_g10["PhysicalPorts"][j]["MacAddress"]
+                lst_mac.append(c3)
+
 # Logout of the current session
     return lst_mac
     REDFISH_OBJ.logout()
-#get_macaddress("ip","user","passowrd")
-#print(d)
+#ci =get_macaddress("172.20.57.25","admin","admin123")
+#print(ci)
+def get_server_type(a,b,c):
 
+    SYSTEM_URL = "https://"+a
+    LOGIN_ACCOUNT = b
+    LOGIN_PASSWORD = c
+
+## Create a REDFISH object
+    REDFISH_OBJ = redfish.redfish_client(base_url=SYSTEM_URL, username=LOGIN_ACCOUNT,
+                                    password=LOGIN_PASSWORD)
+
+# Login into the server and create a session
+    REDFISH_OBJ.login(auth="session")
+
+# Do a GET on a given path
+    content_ilotype = REDFISH_OBJ.get("/redfish/v1/Systems/1")
+    x_ilotype=content_ilotype.dict
+    y_ilotype=x_ilotype["Model"].split(" ")[-2:]
+    return y_ilotype
+'''x=get_server_type("172.20.57.187","admin","admin123")
+print(x)
+y={}
+
+d=['123','343']
+for i in range(0,len(d)):
+
+    if x[-1]=='Plus':
+        y[d[i]]='GEN10 Plus'
+    else:
+        y[d[i]]=x[1]
+print(y)
+'''
